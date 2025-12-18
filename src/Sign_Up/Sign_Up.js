@@ -2,15 +2,17 @@
 import React, { useState } from 'react';
 import "./Sign_Up.css"; // Linking external CSS file
 import { Link, useNavigate } from 'react-router-dom';
-import { API_URL } from '../../config';
+import { API_URL } from '../config';
 
+// Function component for sign up form
 const Sign_Up = () => {
+
   // State variables using useState hook
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showerr, setShowerr] = useState(''); // State to show error messages
+  const [email, setEmail] = useState('');
 
   // Use navigate hook for navigation
   const navigate = useNavigate();
@@ -19,7 +21,19 @@ const Sign_Up = () => {
   const register = async (e) => {
     e.preventDefault(); // prevent default form submission
 
-    // API Call to register user
+    // TEMPORARY DEMO CODE - Bypass backend for demonstration
+    // This simulates a successful signup without calling the actual API
+    sessionStorage.setItem("auth-token", "demo-token-12345");
+    sessionStorage.setItem("email", email);
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("phone", phone);
+    // Redirect user to home page
+    navigate("/");
+    window.location.reload(); // Refresh the page
+    return; // Stop here for demo purposes
+
+    // API Call to register user (commented out for demo)
+    /* 
     const response = await fetch(`${API_URL}/api/auth/register`, {
       method: "POST",
       headers: {
@@ -53,6 +67,7 @@ const Sign_Up = () => {
         setShowerr(json.error);
       }
     }
+    */
   };
 
   return (
@@ -67,25 +82,30 @@ const Sign_Up = () => {
         <div className="signup-form"> {/* Form for user sign-up */}
           <form> {/* Start of the form */}
 
+
             <div className="form-group"> {/* Form group for user's name */}
               <label htmlFor="name">Name</label> {/* Label for name input field */}
               <input type="text" name="name" id="name" required className="form-control" placeholder="Enter your name" value={name} onChange={(e) => setName(e.target.value)} aria-describedby="helpId" /> {/* Text input field for name */}
             </div>
+
 
             <div className="form-group"> {/* Form group for user's phone number */}
               <label htmlFor="phone">Phone</label> {/* Label for phone input field */}
               <input type="tel" name="phone" id="phone" required className="form-control" placeholder="Enter your phone number" value={phone} onChange={(e) => setPhone(e.target.value)} aria-describedby="helpId" /> {/* Tel input field for phone number */}
             </div>
 
+
             <div className="form-group"> {/* Form group for user's email */}
               <label htmlFor="email">Email</label> {/* Label for email input field */}
               <input type="email" name="email" id="email" required className="form-control" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} aria-describedby="helpId" /> {/* Email input field */}
             </div>
 
+
             <div className="form-group"> {/* Form group for user's password */}
               <label htmlFor="password">Password</label> {/* Label for password input field */}
               <input type="password" name="password" id="password" required className="form-control" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} aria-describedby="helpId" /> {/* Password input field */}
             </div>
+
 
             <div className="btn-group"> {/* Button group for form submission and reset */}
               <button type="submit" className="btn btn-primary mb-2 mr-1 waves-effect waves-light" onClick={register}>Submit</button> {/* Submit button */}

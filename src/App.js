@@ -2,11 +2,14 @@
 import React from 'react';
 // Apply CSS according to your design theme or the CSS provided in week 3 lab 2
 
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from './components/Navbar/Navbar';
-import Landing_Page from './components/Landing_Page/Landing_Page';
-import Login from './components/Login/Login';
-import Sign_Up from './components/Sign_Up/Sign_Up';
+import Navbar from './Navbar/Navbar';
+import Landing_Page from './Landing_Page/LandingPage';
+import Login from './Login/Login';
+import Sign_Up from './Sign_Up/Sign_Up';
+import InstantConsultation from './InstantConsultationBooking/InstantConsultation';
+
 
 function App() {
   return (
@@ -17,10 +20,12 @@ function App() {
           <Route path="/" element={<Landing_Page />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Sign_Up />} />
+          <Route path="/instant-consultation" element={<InstantConsultation />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
 
 export default App;

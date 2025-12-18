@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 // Apply CSS according to your design theme or the CSS provided in week 3 lab 2
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { API_URL } from '../../config';
+import { API_URL } from '../config';
 
 const Login = () => {
 
@@ -19,13 +19,23 @@ const Login = () => {
     if (sessionStorage.getItem("auth-token")) {
       navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   // Function to handle login form submission
   const login = async (e) => {
     e.preventDefault();
 
-    // Send a POST request to the login API endpoint
+    // TEMPORARY DEMO CODE - Bypass backend for demonstration
+    // This simulates a successful login without calling the actual API
+    sessionStorage.setItem("auth-token", "demo-token-12345");
+    sessionStorage.setItem("email", email);
+    // Redirect user to home page
+    navigate("/");
+    window.location.reload(); // Refresh the page
+    return; // Stop here for demo purposes
+
+    // Send a POST request to the login API endpoint (commented out for demo)
+    /*
     const res = await fetch(`${API_URL}/api/auth/login`, {
       method: "POST",
       headers: {
@@ -58,6 +68,7 @@ const Login = () => {
         alert(json.error);
       }
     }
+    */
   };
 
   return (

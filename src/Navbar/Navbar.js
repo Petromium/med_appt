@@ -71,7 +71,9 @@ const Navbar = () => {
       </div>
       <ul className="nav__links active">
         <li className="link"><Link to="/">Home</Link></li>
-        <li className="link"><a href="#">Appointments</a></li>
+        <li className="link"><Link to="/appointments">Appointments</Link></li>
+        <li className="link"><Link to="/instant-consultation">Instant Consultation</Link></li>
+        <li className="link"><Link to="/find-doctors">Find Doctors</Link></li>
         {!isLoggedIn ? (
           <>
             <li className="link"><Link to="/signup"><button className="btn1">Sign Up</button></Link></li>

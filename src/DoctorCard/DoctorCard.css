@@ -1,0 +1,158 @@
+.doctor-card-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.doctor-card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.doctor-card-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.doctor-card-profile-image-container {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.doctor-card-profile-image-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.doctor-card-details {
+  margin-bottom: 15px;
+}
+
+.doctor-card-detail-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.doctor-card-detail-speciality {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.doctor-card-detail-experience {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.doctor-card-detail-consultationfee {
+  font-size: 14px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.book-appointment-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.book-appointment-btn:hover {
+  background-color: #357ae8;
+}
+
+.book-appointment-btn div:first-child {
+  font-size: 16px;
+}
+
+.book-appointment-btn div:last-child {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-button:hover {
+  color: #333;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.modal-content button[type="submit"] {
+  padding: 12px;
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #357ae8;
+}

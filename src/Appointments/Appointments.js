@@ -113,6 +113,8 @@ const Appointments = () => {
                     <th>ID</th>
                     <th>Doctor Name</th>
                     <th>Speciality</th>
+                    <th>Date</th>
+                    <th>Time</th>
                     <th>Provide Feedback</th>
                     <th>Review Given</th>
                   </tr>
@@ -123,6 +125,8 @@ const Appointments = () => {
                       <td>{index + 1}</td>
                       <td>{appointment.doctorName}</td>
                       <td>{appointment.specialty}</td>
+                      <td>{appointment.date}</td>
+                      <td>{appointment.timeSlot}</td>
                       <td>
                         {!appointment.review ? (
                           <GiveReviews onReviewSubmit={(reviewData) => handleRateVisit(appointment.id, reviewData.rating, reviewData.review)} />

@@ -19,10 +19,10 @@ const Appointments = () => {
     }
   };
 
-  const handleRateVisit = (appointmentId, rating) => {
+  const handleRateVisit = (appointmentId, rating, review) => {
     const updatedAppointments = appointments.map(apt => {
       if (apt.id === appointmentId) {
-        return { ...apt, rating: rating, rated: true };
+        return { ...apt, rating: rating, review: review, rated: true };
       }
       return apt;
     });
@@ -58,28 +58,42 @@ const Appointments = () => {
               <a href="/find-doctors" className="book-now-link">Book an appointment</a>
             </div>
           ) : (
-            <div className="appointments-grid">
-              {upcomingAppointments.map(appointment => (
-                <div key={appointment.id} className="appointment-card">
-                  <div className="appointment-header">
-                    <h3>{appointment.doctorName}</h3>
-                    <span className="appointment-type">{appointment.appointmentType || 'Scheduled'}</span>
-                  </div>
-                  <p className="specialty">{appointment.specialty}</p>
-                  <div className="appointment-details">
-                    <p><strong>Date:</strong> {appointment.date}</p>
-                    <p><strong>Time:</strong> {appointment.timeSlot}</p>
-                    <p><strong>Patient:</strong> {appointment.patientName}</p>
-                    <p><strong>Phone:</strong> {appointment.phone}</p>
-                  </div>
-                  <button
-                    className="cancel-btn"
-                    onClick={() => handleCancelAppointment(appointment.id)}
-                  >
-                    Cancel Appointment
-                  </button>
-                </div>
-              ))}
+            <div className="appointments-table-container">
+              <table className="appointments-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Doctor Name</th>
+                    <th>Speciality</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Patient Name</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {upcomingAppointments.map((appointment, index) => (
+                    <tr key={appointment.id}>
+                      <td>{index + 1}</td>
+                      <td>{appointment.doctorName}</td>
+                      <td>{appointment.specialty}</td>
+                      <td>{appointment.date}</td>
+                      <td>{appointment.timeSlot}</td>
+                      <td>{appointment.patientName}</td>
+                      <td>{appointment.phone}</td>
+                      <td>
+                        <button
+                          className="cancel-btn"
+                          onClick={() => handleCancelAppointment(appointment.id)}
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </section>
@@ -92,28 +106,45 @@ const Appointments = () => {
               <p>No past appointments</p>
             </div>
           ) : (
-            <div className="appointments-grid">
-              {pastAppointments.map(appointment => (
-                <div key={appointment.id} className="appointment-card past">
-                  <div className="appointment-header">
-                    <h3>{appointment.doctorName}</h3>
-                  </div>
-                  <p className="specialty">{appointment.specialty}</p>
-                  <div className="appointment-details">
-                    <p><strong>Date:</strong> {appointment.date}</p>
-                    <p><strong>Time:</strong> {appointment.timeSlot}</p>
-                  </div>
-                  {!appointment.rated ? (
-                    <div className="review-section">
-                      <GiveReviews />
-                    </div>
-                  ) : (
-                    <div className="rated">
-                      <p>Review submitted ✓</p>
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div className="appointments-table-container">
+              <table className="appointments-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Doctor Name</th>
+                    <th>Speciality</th>
+                    <th>Provide Feedback</th>
+                    <th>Review Given</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pastAppointments.map((appointment, index) => (
+                    <tr key={appointment.id}>
+                      <td>{index + 1}</td>
+                      <td>{appointment.doctorName}</td>
+                      <td>{appointment.specialty}</td>
+                      <td>
+                        {!appointment.review ? (
+                          <GiveReviews onReviewSubmit={(reviewData) => handleRateVisit(appointment.id, reviewData.rating, reviewData.review)} />
+                        ) : (
+                          <button className="review-btn" disabled>Reviewed</button>
+                        )}
+                      </td>
+                      <td>
+                        {appointment.review ? (
+                          <>
+                            <div style={{ color: '#ffc107', marginBottom: '5px' }}>
+                              {'★'.repeat(appointment.rating)}
+                              <span style={{ color: '#ddd' }}>{'★'.repeat(5 - appointment.rating)}</span>
+                            </div>
+                            <div>{appointment.review}</div>
+                          </>
+                        ) : ''}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </section>

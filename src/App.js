@@ -11,6 +11,7 @@ import InstantConsultation from './InstantConsultationBooking/InstantConsultatio
 import Appointments from './Appointments/Appointments';
 import FindDoctorSearch from './FindDoctorSearch/FindDoctorSearch';
 import Notification from './Notification/Notification';
+import ProfileCard from './ProfileCard/ProfileCard';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/instant-consultation" element={<InstantConsultation />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/find-doctors" element={<FindDoctorSearch />} />
+            <Route path="/profile" element={<ProfileCard />} />
           </Routes>
         </Notification>
       </BrowserRouter>

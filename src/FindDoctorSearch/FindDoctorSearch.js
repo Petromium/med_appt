@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import './FindDoctorSearch.css';
-import DoctorCard from '../DoctorCard/DoctorCard';
+import DoctorCardIC from '../InstantConsultationBooking/DoctorCardIC/DoctorCardIC';
 
 const FindDoctorSearch = () => {
   const [doctorDetails, setDoctorDetails] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [isSearched, setIsSearched] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  
+
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -91,17 +91,17 @@ const FindDoctorSearch = () => {
     const getDoctorsDetails = async () => {
       try {
         const response = await fetch('https://api.npoint.io/9a5543d36f1546d1e473');
-        
+
         if (!response.ok) {
           throw new Error('API failed');
         }
-        
+
         const data = await response.json();
         setDoctorDetails(data);
         setFilteredDoctors(data);
-        
+
         if (searchParams.get('speciality')) {
-          const filtered = data.filter(doctor => 
+          const filtered = data.filter(doctor =>
             doctor.speciality.toLowerCase() === searchParams.get('speciality').toLowerCase()
           );
           setFilteredDoctors(filtered);
@@ -111,9 +111,9 @@ const FindDoctorSearch = () => {
         console.log('API failed, using fallback data:', error);
         setDoctorDetails(fallbackDoctors);
         setFilteredDoctors(fallbackDoctors);
-        
+
         if (searchParams.get('speciality')) {
-          const filtered = fallbackDoctors.filter(doctor => 
+          const filtered = fallbackDoctors.filter(doctor =>
             doctor.speciality.toLowerCase() === searchParams.get('speciality').toLowerCase()
           );
           setFilteredDoctors(filtered);
@@ -121,7 +121,7 @@ const FindDoctorSearch = () => {
         }
       }
     };
-    
+
     getDoctorsDetails();
   }, [searchParams]);
 
@@ -130,7 +130,7 @@ const FindDoctorSearch = () => {
       setFilteredDoctors(doctorDetails);
       setIsSearched(false);
     } else {
-      const filtered = doctorDetails.filter(doctor => 
+      const filtered = doctorDetails.filter(doctor =>
         doctor.speciality.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredDoctors(filtered);
@@ -148,12 +148,12 @@ const FindDoctorSearch = () => {
     <div className="find-doctor-search">
       <center>
         <h1>Find Doctors and Book Appointments</h1>
-        
+
         <div className="home-search-container">
           <div className="doctor-search-box">
-            <input 
-              type="text" 
-              className="search-doctor-input-box" 
+            <input
+              type="text"
+              className="search-doctor-input-box"
               placeholder="Search doctors by specialty (e.g., Dentist, Cardiologist, Dermatologist)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -161,23 +161,23 @@ const FindDoctorSearch = () => {
             />
           </div>
           <div className="finddoctor-search-icon">
-            <button 
-              className="search-doctor-btn" 
+            <button
+              className="search-doctor-btn"
               onClick={handleSearch}
             >
               Search
             </button>
           </div>
         </div>
-        
+
         <div className="search-results-section">
           <h2>{filteredDoctors.length} doctors available</h2>
           <p>Schedule appointments at your convenience with verified doctor profiles</p>
-          
+
           {filteredDoctors.length === 0 ? (
             <div className="no-results">
               <p>No doctors found{searchTerm ? ` for "${searchTerm}"` : ''}</p>
-              <button 
+              <button
                 onClick={() => {
                   setSearchTerm('');
                   setFilteredDoctors(doctorDetails);
@@ -188,9 +188,9 @@ const FindDoctorSearch = () => {
               </button>
             </div>
           ) : (
-            <div className="search-doctor-result-item">
+            <div className="search-results-container">
               {filteredDoctors.map((doctor, index) => (
-                <DoctorCard 
+                <DoctorCardIC
                   key={index}
                   name={doctor.name}
                   speciality={doctor.speciality}

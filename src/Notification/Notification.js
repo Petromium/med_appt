@@ -1,6 +1,7 @@
 // following code has been connected with appropriate comments for your reference
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
+import './Notification.css';
 
 // function component Notification to display user notifications
 const Notification = ({ children }) => {

@@ -10,20 +10,23 @@ import Sign_Up from './Sign_Up/Sign_Up';
 import InstantConsultation from './InstantConsultationBooking/InstantConsultation';
 import Appointments from './Appointments/Appointments';
 import FindDoctorSearch from './FindDoctorSearch/FindDoctorSearch';
+import Notification from './Notification/Notification';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Landing_Page />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Sign_Up />} />
-          <Route path="/instant-consultation" element={<InstantConsultation />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/find-doctors" element={<FindDoctorSearch />} />
-        </Routes>
+        <Notification>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Landing_Page />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Sign_Up />} />
+            <Route path="/instant-consultation" element={<InstantConsultation />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/find-doctors" element={<FindDoctorSearch />} />
+          </Routes>
+        </Notification>
       </BrowserRouter>
     </div>
   );

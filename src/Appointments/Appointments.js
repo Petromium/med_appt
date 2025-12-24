@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Appointments.css';
+import GiveReviews from '../ReviewForm/GiveReviews';
 
 const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
-  
+
   useEffect(() => {
     // Load appointments from localStorage
     const storedAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
@@ -47,7 +48,7 @@ const Appointments = () => {
     <div className="appointments-page">
       <div className="appointments-container">
         <h1>My Appointments</h1>
-        
+
         {/* Upcoming Appointments */}
         <section className="appointments-section">
           <h2>Upcoming Appointments</h2>
@@ -71,8 +72,8 @@ const Appointments = () => {
                     <p><strong>Patient:</strong> {appointment.patientName}</p>
                     <p><strong>Phone:</strong> {appointment.phone}</p>
                   </div>
-                  <button 
-                    className="cancel-btn" 
+                  <button
+                    className="cancel-btn"
                     onClick={() => handleCancelAppointment(appointment.id)}
                   >
                     Cancel Appointment
@@ -103,23 +104,12 @@ const Appointments = () => {
                     <p><strong>Time:</strong> {appointment.timeSlot}</p>
                   </div>
                   {!appointment.rated ? (
-                    <div className="rating-section">
-                      <p>Rate your visit:</p>
-                      <div className="stars">
-                        {[1, 2, 3, 4, 5].map(star => (
-                          <span
-                            key={star}
-                            className="star"
-                            onClick={() => handleRateVisit(appointment.id, star)}
-                          >
-                            ⭐
-                          </span>
-                        ))}
-                      </div>
+                    <div className="review-section">
+                      <GiveReviews />
                     </div>
                   ) : (
                     <div className="rated">
-                      <p>Your Rating: {'⭐'.repeat(appointment.rating)}</p>
+                      <p>Review submitted ✓</p>
                     </div>
                   )}
                 </div>

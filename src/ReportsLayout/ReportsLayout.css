@@ -1,0 +1,108 @@
+/* Reports Layout Container */
+.reports-layout-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* Reports Title */
+.reports-title {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Reports Table Styling */
+.reports-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header */
+.reports-table thead {
+    background-color: #e8e8e8;
+}
+
+.reports-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    font-size: 14px;
+}
+
+/* Table Body */
+.reports-table tbody tr {
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.2s ease;
+}
+
+.reports-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.reports-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.reports-table td {
+    padding: 12px 16px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Report Buttons Styling */
+.report-button {
+    background-color: #2190ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-weight: 500;
+}
+
+/* Button Hover Effects */
+.report-button:hover {
+    background-color: #1a7de0;
+    transform: translateY(-1px);
+}
+
+.report-button:active {
+    transform: translateY(0);
+}
+
+/* View Button Specific Styling */
+.view-button {
+    background-color: #2190ff;
+}
+
+.view-button:hover {
+    background-color: #1a7de0;
+}
+
+/* Download Button Specific Styling */
+.download-button {
+    background-color: #2190ff;
+}
+
+.download-button:hover {
+    background-color: #1a7de0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}

@@ -12,6 +12,7 @@ import Appointments from './Appointments/Appointments';
 import FindDoctorSearch from './FindDoctorSearch/FindDoctorSearch';
 import Notification from './Notification/Notification';
 import ProfileCard from './ProfileCard/ProfileCard';
+import ReportsLayout from './ReportsLayout/ReportsLayout';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/find-doctors" element={<FindDoctorSearch />} />
             <Route path="/profile" element={<ProfileCard />} />
+            <Route path="/reports" element={<ReportsLayout />} />
           </Routes>
         </Notification>
       </BrowserRouter>

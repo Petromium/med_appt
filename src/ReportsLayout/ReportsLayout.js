@@ -65,8 +65,8 @@ const ReportsLayout = () => {
         addObj(
             3,
             '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] ' +
-                '/Resources << /Font << /F1 5 0 R >> >> ' +
-                '/Contents 4 0 R >>'
+            '/Resources << /Font << /F1 5 0 R >> >> ' +
+            '/Contents 4 0 R >>'
         );
         addObj(4, `<< /Length ${streamLength} >>\nstream\n${stream}endstream`);
         addObj(5, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');

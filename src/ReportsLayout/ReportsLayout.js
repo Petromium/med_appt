@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ReportsLayout.css';
 
 // ReportsLayout Component - Displays medical reports in a table format
-const ReportsLayout = () => {
+const ReportsLayout = ({ embedded = false }) => {
     // Sample data state - containing doctor reports
     const [reports] = useState([
         {
@@ -127,69 +127,75 @@ const ReportsLayout = () => {
         setTimeout(() => URL.revokeObjectURL(url), 5_000);
     };
 
+    const reportsContent = (
+        <>
+            <h1>Medical Reports</h1>
+
+            {/* Reports Table */}
+            <div className="reports-table-container">
+                <table className="reports-table">
+                    <thead>
+                        <tr>
+                            <th>Serial Number</th>
+                            <th>Doctor Name</th>
+                            <th>Doctor Speciality</th>
+                            <th>View Report</th>
+                            <th>Download Report</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {reports.map((report, index) => (
+                            <tr key={report.id}>
+                                {/* Serial Number Column */}
+                                <td>{index + 1}</td>
+
+                                {/* Doctor Name Column */}
+                                <td>{report.doctorName}</td>
+
+                                {/* Doctor Speciality Column */}
+                                <td>{report.speciality}</td>
+
+                                {/* View Report Button Column */}
+                                <td>
+                                    <button
+                                        className="report-button view-button"
+                                        onClick={() => handleViewReport(report)}
+                                        aria-label={`View report from ${report.doctorName}`}
+                                    >
+                                        View Report
+                                    </button>
+                                </td>
+
+                                {/* Download Report Button Column */}
+                                <td>
+                                    <button
+                                        className="report-button download-button"
+                                        onClick={() => handleDownloadReport(report)}
+                                        aria-label={`Download report from ${report.doctorName}`}
+                                    >
+                                        Download Report
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            {/* Empty State - Shows when no reports available */}
+            {reports.length === 0 && (
+                <div className="empty-state">
+                    No reports available.
+                </div>
+            )}
+        </>
+    );
+
+    if (embedded) return reportsContent;
+
     return (
         <div className="reports-page">
-            <div className="reports-container">
-                <h1>Medical Reports</h1>
-
-                {/* Reports Table */}
-                <div className="reports-table-container">
-                    <table className="reports-table">
-                        <thead>
-                            <tr>
-                                <th>Serial Number</th>
-                                <th>Doctor Name</th>
-                                <th>Doctor Speciality</th>
-                                <th>View Report</th>
-                                <th>Download Report</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {reports.map((report, index) => (
-                                <tr key={report.id}>
-                                    {/* Serial Number Column */}
-                                    <td>{index + 1}</td>
-
-                                    {/* Doctor Name Column */}
-                                    <td>{report.doctorName}</td>
-
-                                    {/* Doctor Speciality Column */}
-                                    <td>{report.speciality}</td>
-
-                                    {/* View Report Button Column */}
-                                    <td>
-                                        <button
-                                            className="report-button view-button"
-                                            onClick={() => handleViewReport(report)}
-                                            aria-label={`View report from ${report.doctorName}`}
-                                        >
-                                            View Report
-                                        </button>
-                                    </td>
-
-                                    {/* Download Report Button Column */}
-                                    <td>
-                                        <button
-                                            className="report-button download-button"
-                                            onClick={() => handleDownloadReport(report)}
-                                            aria-label={`Download report from ${report.doctorName}`}
-                                        >
-                                            Download Report
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-
-                {/* Empty State - Shows when no reports available */}
-                {reports.length === 0 && (
-                    <div className="empty-state">
-                        No reports available.
-                    </div>
-                )}
-            </div>
+            <div className="reports-container">{reportsContent}</div>
         </div>
     );
 };

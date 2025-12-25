@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./ProfileCard.css";
 
 // Define a Function component called ProfileForm
-const ProfileForm = () => {
+const ProfileForm = ({ embedded = false }) => {
     // Set up state variables using the useState hook
     const [userDetails, setUserDetails] = useState({});
     const [updatedDetails, setUpdatedDetails] = useState({});
@@ -107,55 +107,61 @@ const ProfileForm = () => {
     };
 
     // Render the profile form with different sections based on edit mode
+    const content = (
+        <div className={`profile-container ${embedded ? 'profile-container--embedded' : ''}`}>
+            {editMode ? (
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Name
+                        <input
+                            type="text"
+                            name="name"
+                            value={updatedDetails.name}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Phone
+                        <input
+                            type="text"
+                            name="phone"
+                            value={updatedDetails.phone}
+                            onChange={handleInputChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Email
+                        <input
+                            type="email"
+                            name="email"
+                            value={userDetails.email || sessionStorage.getItem("email") || ""}
+                            disabled
+                        />
+                    </label>
+                    <button type="submit">Save</button>
+                </form>
+            ) : (
+                <div className="profile-details">
+                    <h1>Welcome, {userDetails.name}</h1>
+                    <p>
+                        <b>Email:</b> {userDetails.email || sessionStorage.getItem("email")}
+                    </p>
+                    <p>
+                        <b>Phone:</b> {userDetails.phone}
+                    </p>
+                    <button onClick={handleEdit}>Edit</button>
+                </div>
+            )}
+        </div>
+    );
+
+    if (embedded) return content;
+
     return (
         <div className="profile-page">
-            <div className="profile-container">
-                {editMode ? (
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Name
-                            <input
-                                type="text"
-                                name="name"
-                                value={updatedDetails.name}
-                                onChange={handleInputChange}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Phone
-                            <input
-                                type="text"
-                                name="phone"
-                                value={updatedDetails.phone}
-                                onChange={handleInputChange}
-                                required
-                            />
-                        </label>
-                        <label>
-                            Email
-                            <input
-                                type="email"
-                                name="email"
-                                value={userDetails.email || sessionStorage.getItem("email") || ""}
-                                disabled
-                            />
-                        </label>
-                        <button type="submit">Save</button>
-                    </form>
-                ) : (
-                    <div className="profile-details">
-                        <h1>Welcome, {userDetails.name}</h1>
-                        <p>
-                            <b>Email:</b> {userDetails.email || sessionStorage.getItem("email")}
-                        </p>
-                        <p>
-                            <b>Phone:</b> {userDetails.phone}
-                        </p>
-                        <button onClick={handleEdit}>Edit</button>
-                    </div>
-                )}
-            </div>
+            {content}
         </div>
     );
 };

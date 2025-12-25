@@ -1,0 +1,11 @@
+/* Match Reports page look, but with fixed-navbar offset */
+.profile-reports-page {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 140px 20px 40px;
+}
+
+/* Ensure in-page navigation doesn't tuck under the fixed navbar */
+.profile-reports-page #reports {
+    scroll-margin-top: 140px;
+}

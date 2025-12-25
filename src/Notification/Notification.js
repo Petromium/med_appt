@@ -1,13 +1,11 @@
 // following code has been connected with appropriate comments for your reference
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
 import './Notification.css';
 
 // function component Notification to display user notifications
 const Notification = ({ children }) => {
   // State variables to manage user authentication, username, doctor data, and appointment data
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
   const [doctorData, setDoctorData] = useState(null);
   const [appointmentData, setAppointmentData] = useState(null);
 
@@ -21,7 +19,6 @@ const Notification = ({ children }) => {
     // Set isLoggedIn state to true and update username if storedUsername exists
     if (storedUsername) {
       setIsLoggedIn(true);
-      setUsername(storedUsername);
     }
 
     // set doctorData state if storedoctorData exists
@@ -38,7 +35,6 @@ const Notification = ({ children }) => {
   // Return JSX elements to display Navbar, children components, and appointment details
   return (
     <div>
-      <Navbar />
       {children}
       {/* Render children components */}
 

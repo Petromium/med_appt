@@ -1,3 +1,28 @@
+.find-doctor-search {
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 40px 20px;
+}
+
+.find-doctor-search h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.search-results-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-results-section h2 {
+    color: #333;
+    margin-top: 30px;
+}
+
+.search-results-section p {
+    color: #666;
+}
+
 .location-search-box {
     display: flex;
     align-items: center;
@@ -156,12 +181,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    gap: 10px;
+}
+
+.finddoctor-search-icon {
+    display: flex;
+    align-items: center;
 }
 
 .search-doctor-btn {
     height: 40px;
+    line-height: 40px;
     padding: 0 30px;
+    margin-top: 0;
     background-color: #007bff;
     color: white;
     border: none;
@@ -176,11 +208,11 @@
     background-color: #0056b3;
 }
 
-.finddoctor {
+.find-doctor-search .finddoctor {
     overflow: hidden;
 }
 
-.finddoctor .mainimg {
+.find-doctor-search .finddoctor .mainimg {
     width: 312px;
     height: 312px;
     object-fit: cover;
